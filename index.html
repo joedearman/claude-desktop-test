@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanceFlow - Smart Financial Management</title>
+    <title>Mofin - Financial Management Made Simple</title>
     <style>
         :root {
-            --primary-color: #6B46C1;
-            --secondary-color: #9F7AEA;
-            --text-color: #2D3748;
-            --light-bg: #F7FAFC;
+            --primary-color: #333;
+            --text-color: #333;
+            --light-bg: #F8F9FA;
+            --purple-gradient: linear-gradient(135deg, #F6E7FF 0%, #EDF2FF 100%);
         }
 
         * {
@@ -22,6 +22,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-color);
             line-height: 1.6;
+            background: white;
         }
 
         .container {
@@ -31,9 +32,8 @@
         }
 
         header {
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
             background: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -45,98 +45,157 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--text-color);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
+            margin-left: auto;
+            margin-right: 2rem;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
         .cta-button {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
+            background: white;
+            color: var(--text-color);
+            padding: 0.6rem 1.2rem;
             border-radius: 9999px;
             text-decoration: none;
             font-weight: 500;
+            border: 1px solid #e0e0e0;
         }
 
         .hero {
             padding: 4rem 0;
-            background: linear-gradient(135deg, #F6E7FF 0%, #EDF2FF 100%);
-            min-height: 80vh;
+            background: var(--purple-gradient);
+            min-height: 70vh;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
         }
 
         .hero-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
-        .hero-text p {
-            font-size: 1.25rem;
-            color: #4A5568;
+        .hero h1 span {
+            color: #6B46C1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
             margin-bottom: 2rem;
+            max-width: 500px;
         }
 
         .email-input {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
+            max-width: 400px;
         }
 
         .email-input input {
             padding: 0.75rem 1rem;
-            border: 1px solid #E2E8F0;
+            border: none;
             border-radius: 0.5rem;
             width: 100%;
             max-width: 300px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .get-started-btn {
+            background: #000;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
         }
 
         .features {
-            padding: 4rem 0;
-            background: var(--light-bg);
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .features h2 span {
+            color: #6B46C1;
+        }
+
+        .features-label {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #6B46C1;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 1rem 0;
         }
 
         .feature-icon {
-            background: var(--secondary-color);
-            width: 3rem;
-            height: 3rem;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
@@ -153,6 +212,10 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -160,15 +223,15 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">FinanceFlow</div>
+                <div class="logo">MOFIN.</div>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Features</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Pages</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Pricing</a></li>
                 </ul>
-                <a href="#" class="cta-button">Download App</a>
+                <a href="#" class="cta-button">Download Free App</a>
             </nav>
         </div>
     </header>
@@ -177,15 +240,15 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Smart Financial Management Made Simple</h1>
-                    <p>Take control of your finances with our intuitive tools for budgeting, tracking, and financial planning.</p>
+                    <h1>Unlock Financial<br>Clarity with <span>Mofin</span></h1>
+                    <p>Gain complete insight into your finances with Mofin's easy-to-use tools for budgeting, tracking, and saving.</p>
                     <div class="email-input">
                         <input type="email" placeholder="Enter your email address">
-                        <a href="#" class="cta-button">Get Started</a>
+                        <button class="get-started-btn">Get Started</button>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="/api/placeholder/400/800" alt="App Screenshot" style="max-width: 100%; height: auto;">
+                    <img src="/api/placeholder/400/800" alt="Mofin App Interface" style="max-width: 100%; height: auto;">
                 </div>
             </div>
         </div>
@@ -193,24 +256,30 @@
 
     <section class="features">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Essential Features for Better Finance</h2>
-            <p style="text-align: center; color: #4A5568; max-width: 600px; margin: 0 auto;">Our comprehensive suite of tools helps you manage your money smarter.</p>
-            
+            <div class="features-label">FEATURES</div>
+            <h2>Essential Features for<br><span>Smart Finances</span></h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Smart Budgeting</h3>
-                    <p>Create and manage budgets that adapt to your spending patterns.</p>
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="18" rx="2" />
+                        <path d="M7 7h10M7 12h10M7 17h10" />
+                    </svg>
+                    <h3>Expense Insights</h3>
+                    <p>Set budgets easily, track expenses, and get insights to stay on target.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Expense Tracking</h3>
-                    <p>Automatically categorize and track your expenses in real-time.</p>
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                    <h3>Automated Budgeting</h3>
+                    <p>Set budgets easily, track expenses, and get insights to stay on target.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile First</h3>
-                    <p>Access your financial dashboard anywhere, anytime on any device.</p>
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4" />
+                    </svg>
+                    <h3>Custom Reports</h3>
+                    <p>Set budgets easily, track expenses, and get insights to stay on target.</p>
                 </div>
             </div>
         </div>
